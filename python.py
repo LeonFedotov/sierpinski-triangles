@@ -7,5 +7,5 @@ def drawSerp(dept = 10, drawChar = ".", lastLine = []):
 			else :
 				newLine.append(lastLine[x-1]+lastLine[x])
 		print "%s".rjust((dept+1)*len(drawChar)) % (" "*len(drawChar)).join(map(lambda x: drawChar if x%2 else " "*len(drawChar),newLine))
-    
+
 		drawSerp(dept-1, drawChar, newLine)
