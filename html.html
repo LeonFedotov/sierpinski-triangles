@@ -1,46 +1,45 @@
 <html>
- <head>
-  <script type="application/javascript">
-  	var triangles = [];
+	<head>
+		<script type="application/javascript">
+			var triangles = [];
 
-  	var drawTriangle = function(x, y, w, h) {
-  		this.beginPath();
-	  	this.lineTo(x - w, y+h);
-			this.lineTo(x + w, y+h);
-			this.lineTo(x, y);
-			this.fillStyle = "rgba(0, 200, 0, .1)";
-			this.fill();
-		this.closePath();
-  	};
+			var drawTriangle = function(x, y, w, h) {
+				this.beginPath();
+				this.lineTo(x - w, y + h);
+				this.lineTo(x + w, y + h);
+				this.lineTo(x, y);
+				this.fillStyle = "rgba(0, 200, 0, .1)";
+				this.fill();
+				this.closePath();
+			};
 
-	var serpinsky = function(x, y, w, h) {
-		console.log(x, y, w, h)
-		var that = this;
-		triangles.push([that, x, y, w, h]);
+			var serpinsky = function(x, y, w, h) {
+				var that = this;
+				triangles.push([that, x, y, w, h]);
 
-		if(w < 10 || h < 10)
-			return;
+				if (w < 10 || h < 10)
+					return;
 
-    serpinsky.call(this, x+w/2, y+h/2, w/2, h/2);
-    serpinsky.call(this, x, y, w/2, h/2);
-    serpinsky.call(this, x-w/2, y+h/2, w/2, h/2);
-	};
+				serpinsky.call(this, x + w / 2, y + h / 2, w / 2, h / 2);
+				serpinsky.call(this, x, y, w / 2, h / 2);
+				serpinsky.call(this, x - w / 2, y + h / 2, w / 2, h / 2);
+			};
 
-    var draw = function() {
-      var canvas = document.getElementById("canvas");
-      if (canvas.getContext) {
-        var ctx = canvas.getContext("2d");
-        serpinsky.call(ctx, 500, 0 , 500, 500);
-        setTimeout(function() {
-        	drawTriangle.call.apply(drawTriangle, triangles.shift());
-        	if(triangles.length > 0)
-        		setTimeout(arguments.callee, 10);
-        }, 100);
-      }
-    }
-  </script>
- </head>
- <body onload="draw();">
-   <canvas id="canvas" width="1000" height="1000"></canvas>
- </body>
+			var draw = function() {
+				var canvas = document.getElementById("canvas");
+				if (canvas.getContext) {
+					var ctx = canvas.getContext("2d");
+					serpinsky.call(ctx, 500, 0, 500, 500);
+					setTimeout(function() {
+						drawTriangle.call.apply(drawTriangle, triangles.shift());
+						if (triangles.length > 0)
+							setTimeout(arguments.callee, 10);
+					}, 100);
+				}
+			}
+		</script>
+	</head>
+	<body onload="draw();">
+		<canvas id="canvas" width="1000" height="1000"></canvas>
+	</body>
 </html>
