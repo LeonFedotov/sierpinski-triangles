@@ -8,7 +8,7 @@
 				this.lineTo(x - w, y + h);
 				this.lineTo(x + w, y + h);
 				this.lineTo(x, y);
-				this.fillStyle = "rgba(0, 200, 0, .1)";
+				this.fillStyle = "rgba(137, 245, 228, 0.3);";
 				this.fill();
 				this.closePath();
 			};
@@ -20,8 +20,8 @@
 				if (w < 10 || h < 10)
 					return;
 
-				serpinsky.call(this, x + w / 2, y + h / 2, w / 2, h / 2);
 				serpinsky.call(this, x, y, w / 2, h / 2);
+				serpinsky.call(this, x + w / 2, y + h / 2, w / 2, h / 2);
 				serpinsky.call(this, x - w / 2, y + h / 2, w / 2, h / 2);
 			};
 
